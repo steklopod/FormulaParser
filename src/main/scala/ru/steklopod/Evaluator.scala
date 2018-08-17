@@ -1,8 +1,6 @@
-package com.github.kright.formulaparser
 
-/**
-	* Created by lgor on 4/2/17.
-	*/
+package ru.steklopod
+
 object Evaluator {
 	def apply(expression: Expression,
 	          variables: (String) => Double = Map.empty,
