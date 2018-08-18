@@ -1,5 +1,8 @@
 package ru
 
+import ru.steklopod.{Evaluator, FormulaParser}
+import scala.util.parsing.combinator._
+
 object Main extends App {
 	def eval(code: String,
 	         variables: (String) => Double = Map.empty,
