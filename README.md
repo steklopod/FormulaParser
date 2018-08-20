@@ -38,18 +38,19 @@
     case object INDENT extends WorkflowToken
     case object DEDENT extends WorkflowToken
 ```
-Наш лексер расширяет [RegexParsers](https://github.com/scala/scala-parser-combinators/blob/1.1.x/docs/Getting_Started.md), который является подтипом [Parsers](https://github.com/scala/scala-parser-combinators/blob/1.1.x/docs/Getting_Started.md). 
 
 `RegexParsers` создан для построения парсеров символов с использованием `регулярных выражений`. 
 Он обеспечивает неявные преобразования из `String` и `Regex` в `Parser [String]`, 
 что позволяет использовать их в качестве отправной точки для составления все более сложных парсеров.
+
+Наш лексер расширяет [RegexParsers](https://github.com/scala/scala-parser-combinators/blob/1.1.x/docs/Getting_Started.md), который является подтипом [Parsers](https://github.com/scala/scala-parser-combinators/blob/1.1.x/docs/Getting_Started.md): 
 
 <!-- code -->
 ```scala
     object WorkflowLexer extends RegexParsers {
 ```
 
-Начнем с указания, какие символы следует игнорировать как пробельные символы. Мы не можем игнорировать `\ n`, так как нам нужно, чтобы он распознавал уровень идентификации, определяемый количеством пробелов, которые следуют за ним. Любой другой символ пробела можно игнорировать.
+Начнем с указания, какие символы следует игнорировать как пробельные символы. Мы не можем игнорировать `\ n`, так как нам нужно, чтобы он распознавал уровень идентификации, определяемый количеством пробелов, которые следуют за ним. Любой другой символ пробела можно игнорировать:
 
 <!-- code -->
 ```scala

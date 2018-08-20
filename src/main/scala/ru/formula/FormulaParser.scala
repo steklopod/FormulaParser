@@ -1,4 +1,4 @@
-package ru.steklopod
+package ru.formula
 
 import scala.util.parsing.input.CharSequenceReader
 import scala.util.parsing.combinator.{PackratParsers, RegexParsers}

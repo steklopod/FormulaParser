@@ -1,0 +1,20 @@
+Файл `to.parse` после парсинга должен выглядеть вот так:
+
+AndThen(
+  ReadInput(List(name, country)),
+  Choice(List(
+    IfThen(
+      Equals(country, PT),
+      AndThen(CallService(A), Exit)
+    ),
+    OtherwiseThen(
+      AndThen(
+        CallService(B),
+        Choice(List(
+          IfThen(Equals(name, unknown), Exit),
+          OtherwiseThen(AndThen(CallService(C), Exit))
+        ))
+      )
+    )
+  ))
+)

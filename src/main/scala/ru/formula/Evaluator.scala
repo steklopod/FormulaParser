@@ -1,5 +1,5 @@
 
-package ru.steklopod
+package ru.formula
 
 object Evaluator {
 	def apply(expression: Expression,
