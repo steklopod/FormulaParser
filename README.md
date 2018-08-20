@@ -1,12 +1,61 @@
 # Parser combinators
 
-[Parser combinator](https://en.wikipedia.org/wiki/Parser_combinator) - это просто функция, которая принимает парсеры в качестве входных данных и возвращает новый синтаксический анализатор в качестве вывода, аналогично тому, как функции более высокого порядка полагаются на вызов других функций, которые передаются в качестве входных данных для создания новой функции в качестве вывода.
+Пример парсинга файла `to.parse`:
 
-В качестве примера, предположим, что у нас есть парсер int, который распознает целочисленные литералы и парсер плюс, который распознает символ «+», мы можем создать парсер, который распознает последовательность int plus int как целочисленное дополнение.
+<!-- code -->
+```python
+    read input name, country
+    switch:
+      country == "PT" ->
+        call service "A"
+        exit
+      otherwise ->
+        call service "B"
+        switch:
+          name == "unknown" ->
+            exit
+          otherwise ->
+            call service "C"
+            exit
+```
 
-Стандартная библиотека Scala включает в себя реализацию комбинаторов парсеров, которая размещается по адресу: [https://github.com/scala/scala-parser-combinators](github.com/scala/scala-parser-combinators)
+В след. вид:
 
-Чтобы использовать его, вам просто потребуется следующая зависимость в вашем проекте: 
+<!-- code -->
+```scala
+AndThen(
+  ReadInput(List(name, country)),
+  Choice(List(
+    IfThen(
+      Equals(country, PT),
+      AndThen(CallService(A), Exit)
+    ),
+    OtherwiseThen(
+      AndThen(
+        CallService(B),
+        Choice(List(
+          IfThen(Equals(name, unknown), Exit),
+          OtherwiseThen(AndThen(CallService(C), Exit))
+        ))
+      )
+    )
+  ))
+)
+```
+
+[Parser combinator](https://en.wikipedia.org/wiki/Parser_combinator) - это просто функция, 
+которая принимает парсеры в качестве входных данных и возвращает новый синтаксический анализатор 
+в качестве вывода, аналогично тому, как функции более высокого порядка полагаются на вызов других функций, 
+которые передаются в качестве входных данных для создания новой функции в качестве вывода.
+
+В качестве примера, предположим, что у нас есть парсер `int`, который распознает целочисленные литералы 
+и парсер `плюс`, который распознает символ `«+»`, мы можем создать парсер, 
+который распознает последовательность `int plus int` как целочисленное дополнение.
+
+Стандартная библиотека Scala включает в себя реализацию комбинаторов парсеров, 
+которая размещается по адресу: [github.com/scala/scala-parser-combinators](https://github.com/scala/scala-parser-combinators)
+
+Чтобы использовать его, вам просто потребуется следующая зависимость в вашем `build.sbt`: 
 <!-- code -->
 ```sbtshell
     «org.scala-lang.modules» %% »scala-parser-combinators«% »1.1.1"
