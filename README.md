@@ -117,8 +117,9 @@ _Любой другой символ пробела можно игнориро
     override val whiteSpace = "[ \t\r\f]+".r
 ```
 
+[справка:](http://website-lab.ru/article/regexp/shpargalka_po_regulyarnyim_vyirajeniyam/)
 <!-- code -->
-```regexp
+```python
     \t - табуляция;
     \r - возврат каретки;
     \f - конец (разрыв) страницы;
