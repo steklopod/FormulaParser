@@ -90,6 +90,7 @@ AndThen(
     case object ARROW extends WorkflowToken
     case object EQUALS extends WorkflowToken
     case object COMMA extends WorkflowToken
+    
     case object INDENT extends WorkflowToken
     case object DEDENT extends WorkflowToken
 ```
@@ -105,12 +106,24 @@ AndThen(
     object WorkflowLexer extends RegexParsers {
 ```
 
-Начнем с указания, какие символы следует игнорировать как пробельные символы. Мы не можем игнорировать `\ n`, так как нам нужно, чтобы он распознавал уровень идентификации, определяемый количеством пробелов, которые следуют за ним. Любой другой символ пробела можно игнорировать:
+Начнем с указания, какие символы следует игнорировать как пробельные символы. 
+Мы не можем игнорировать `\ n` (_перенос строки_), так как нам нужно, чтобы он распознавал уровень 
+идентификации, определяемый количеством пробелов, которые следуют за ним. 
+_Любой другой символ пробела можно игнорировать_:
 
 <!-- code -->
 ```scala
     override def skipWhitespace = true
     override val whiteSpace = "[ \t\r\f]+".r
+```
+
+<!-- code -->
+```regexp
+    \t - табуляция;
+    \r - возврат каретки;
+    \f - конец (разрыв) страницы;
+    \v - вертикальная табуляция.
+    
 ```
 
 [примеры взяты отсюда,](https://habr.com/post/325446/)
