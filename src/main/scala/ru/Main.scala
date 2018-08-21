@@ -1,18 +1,22 @@
 package ru
 
-import ru.formula.{Evaluator, FormulaParser}
+import ru.formula.Evaluator
+import ru.steklopod.{Evaluator, FormulaParser}
+
 import scala.util.parsing.combinator._
 
 object Main extends App {
 	def eval(code: String,
 	         variables: (String) => Double = Map.empty,
 	         functions: (String) => (Double) => Double = Map.empty) = {
+
 		val parsed = FormulaParser(code)
 		parsed.left.foreach(error => println(s"\'$code\' parsing error: $error"))
 		parsed.right.map(expr => Evaluator(expr, variables, functions)).foreach(d => println(s"\'$code\' = $d"))
 	}
 
 	eval("1")
+//	eval("ID10001") //TODO
 	eval("0.1")
 	eval("1.")
 	eval("  1  ")
