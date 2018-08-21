@@ -1,6 +1,6 @@
 # Parser combinators
 
-Пример парсинга файла `to.parse`:
+Пример парсинга файла `to.parse`, который находится в папке проекта `LexerParser/src/main/resources/`:
 
 <!-- code -->
 ```python
