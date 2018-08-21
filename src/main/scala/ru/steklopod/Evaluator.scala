@@ -1,9 +1,8 @@
-
-package ru.formula
+package ru.steklopod
 
 object Evaluator {
 	def apply(expression: Expression,
-	          variables: (String) => Double = Map.empty,
+	          variables: (String) => Double = Map.empty, // TODO
 	          functions: (String) => (Double) => Double = Map.empty): Double = {
 
 		def eval(exp: Expression) = this (exp, variables, functions)
