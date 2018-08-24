@@ -1,8 +1,6 @@
 package ru
 
-import ru.formula.Evaluator
 import ru.steklopod.{Evaluator, FormulaParser}
-
 import scala.util.parsing.combinator._
 
 object Main extends App {
